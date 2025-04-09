@@ -1,7 +1,9 @@
 spring:
   datasource:
-    url: jdbc:postgresql://postgres:hDZmBXULWWggAAqCVnnsLYxtYVZaunls@postgres.railway.internal:5432/railway
+    url: jdbc:postgresql://nozomi.proxy.rlwy.net:26845/railway
+    username: postgres
+    password: awUdKeXnvRHPHMQMgHEIyHlYKkpJMlHF
   jpa:
     open-in-view: false
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create
