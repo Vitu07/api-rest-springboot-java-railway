@@ -1,6 +1,6 @@
 package me.dio.service.impl;
 
-import jakarta.persistence.EntityNotFoundException;
+
 import me.dio.domain.model.User;
 import me.dio.domain.repository.UserRepository;
 import me.dio.service.UserService;
@@ -51,7 +51,6 @@ public class UserSeviceImpl implements UserService {
         user.setCard(userToUpdate.getCard());
         user.setFeatures(userToUpdate.getFeatures());
         user.setNews(userToUpdate.getNews());
-        create(userToUpdate);
 
         userRepository.save(user);
     }
