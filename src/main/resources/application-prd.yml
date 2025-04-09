@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://nozomi.proxy.rlwy.net:26845/railway
-    username: postgres
-    password: awUdKeXnvRHPHMQMgHEIyHlYKkpJMlHF
+    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
+    username: ${PGUSER}
+    password: ${PGPASSWORD}
   jpa:
     open-in-view: false
     hibernate:
