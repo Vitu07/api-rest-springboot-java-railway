@@ -1,5 +1,6 @@
 package me.dio.service.impl;
 
+import jakarta.persistence.EntityNotFoundException;
 import me.dio.domain.model.User;
 import me.dio.domain.repository.UserRepository;
 import me.dio.service.UserService;
@@ -22,11 +23,36 @@ public class UserSeviceImpl implements UserService {
     }
 
     @Override
+    public Iterable<User> findAll() {
+        return  userRepository.findAll();
+    }
+
+    @Override
     public User create(User userToCreate) {
         if (userRepository.existsByAccountNumber(userToCreate.getAccount().getNumber())){
             throw new IllegalArgumentException("This Account number already exists.");
         }
         return userRepository.save(userToCreate);
+    }
 
+    @Override
+    public void delete(Long id) {
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    public void update(Long id, User userToUpdate) {
+        User user = this.findById(id);
+        if (!user.getId().equals(userToUpdate.getId())){
+            throw new NoSuchElementException("This ID do not match to User ID");
+        }
+        user.setName(userToUpdate.getName());
+        user.setAccount(userToUpdate.getAccount());
+        user.setCard(userToUpdate.getCard());
+        user.setFeatures(userToUpdate.getFeatures());
+        user.setNews(userToUpdate.getNews());
+        create(userToUpdate);
+
+        userRepository.save(user);
     }
 }
